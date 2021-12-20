@@ -395,6 +395,60 @@ void Adafruit_GFX::drawPentagram(int16_t x0, int16_t y0,
 	drawLine(xd, yd, xe, ye, color);
 }
 
+// Draw a Pentagon
+void Adafruit_GFX::drawPentagon(int16_t x0, int16_t y0,
+        int16_t r0, uint16_t color) {
+	int xa, ya;
+    int xb, yb;
+    int xc, yc;
+    int xd, yd;
+    int xe, ye;
+    xa = x0;
+    ya = y0 - r0;
+    xb = x0 - r0 * sin(PI / 180 * 72);
+    yb = y0 + r0 * -(cos(PI / 180 * 72));
+    xc = x0 - r0 * -(sin(PI / 180 * 36));
+    yc = y0 - r0 * -(cos(PI / 180 * 36));
+    xd = x0 + r0 * -(sin(PI / 180 * 36));
+    yd = y0 - r0 * -(cos(PI / 180 * 36));
+    xe = x0 + r0 * sin(PI / 180 * 72);
+    ye = y0 + r0 * -(cos(PI / 180 * 72));
+    drawLine(xa, ya, xb, yb, color);
+    drawLine(xb, yb, xd, yd, color);
+    drawLine(xc, yc, xd, yd, color);
+	drawLine(xc, yc, xe, ye, color);
+	drawLine(xe, ye, xa, ya, color);
+}
+
+// Draw a Hexagon
+void Adafruit_GFX::drawHexagon(int16_t x0, int16_t y0,
+        int16_t r0, uint16_t color) {
+	int xa, ya;
+    int xb, yb;
+    int xc, yc;
+    int xd, yd;
+    int xe, ye;
+    int xf, yf;
+    xa = x0 - r0 * 0.5;
+    ya = y0 - r0 * 0.5 * sqrt(3);
+    xb = x0 + r0 * 0.5;
+    yb = y0 - r0 * 0.5 * sqrt(3);
+    xc = x0 + r0;
+    yc = y0;
+    xd = x0 + r0 * 0.5;
+    yd = y0 + r0 * 0.5 * sqrt(3);
+    xe = x0 - r0 * 0.5;
+    ye = y0 + r0 * 0.5 * sqrt(3);
+    xf = x0 - r0;
+    yf = y0;
+    drawLine(xa, ya, xb, yb, color);
+    drawLine(xb, yb, xc, yc, color);
+    drawLine(xc, yc, xd, yd, color);
+	drawLine(xd, yd, xe, ye, color);
+	drawLine(xe, ye, xf, yf, color);
+    drawLine(xf, yf, xa, ya, color);
+}
+
 // Draw a ellipse outline
 void Adafruit_GFX::drawEllipse(int16_t x1, int16_t y1, int16_t x2, int16_t y2, int16_t a, uint16_t color) {
     int16_t max_x = ((x1 > x2 ? x1 : x2) + a > 128 ? (x1 > x2 ? x1 : x2) + a : 128);
